@@ -274,7 +274,7 @@
         /* Product Grid */
         .product-grid {
             display: grid;
-            grid-template-columns: repeat(5, 1fr); /* Exactly 5 items per row for perfect alignment */
+            grid-template-columns: repeat(4, 1fr); /* 4+4+3 layout for 11 items */
             gap: 20px;
         }
 
@@ -282,11 +282,10 @@
             background: #ffffff;
             border: 1pt solid #000000; /* Solid Black 1pt border */
             border-radius: 15px;
-            padding: 10px; /* Reduced padding for compactness */
+            padding: 15px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: space-between; /* Push button to bottom, image to top */
             height: 100%; /* Ensure consistent height */
             transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
         }
@@ -299,8 +298,11 @@
         .product-card img {
             width: 100%;
             height: 250px;
-            object-fit: cover;
-            margin-bottom: 15px;
+            object-fit: contain;
+            background-color: #ffffff;
+            padding: 15px;
+            box-sizing: border-box;
+            margin-bottom: auto; /* Pushes text and button perfectly to the bottom */
             border-radius: 10px;
             transition: transform 0.3s ease;
         }
@@ -312,14 +314,19 @@
         .product-card h3 {
             font-size: 18px; /* Slightly smaller */
             color: #8B0000; /* Match branding */
+            margin-top: 15px;
             margin-bottom: 8px;
             font-weight: 600;
+            text-align: center;
+            width: 100%;
         }
 
         .product-card p {
             font-size: 13px; /* Slightly smaller */
             color: #666;
             margin-bottom: 15px;
+            text-align: center;
+            width: 100%;
         }
 
         .buy-btn {
@@ -572,6 +579,13 @@
                     <img src="sunfloweroil.png" alt="Sunflower Oil">
                     <h3>Sunflower Oil</h3>
                     <p>Light & Healthy</p>
+                    <button class="buy-btn">View Specifications</button>
+                </div>
+                <!-- 11. Dry Coconut -->
+                <div class="product-card">
+                    <img src="coconut.png" alt="Dry Coconut">
+                    <h3>Dry Coconut</h3>
+                    <p>Premium Quality Sun-Dried</p>
                     <button class="buy-btn">View Specifications</button>
                 </div>
             </div>
