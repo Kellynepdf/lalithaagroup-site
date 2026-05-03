@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="te">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LALITHAAGROUP - Live with Nature</title>
+    <link rel="icon" href="images/logo.png" type="image/png">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Great+Vibes&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        /* Dark Red Status Bar */
+        .top-bar {
+            background-color: #8B0000;
+            color: white;
+            padding: 10px 5%;
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+        }
+
+        /* Navigation Bar */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 5%;
+            background: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-logo-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-logo-container img {
+            height: 60px;
+            margin-right: 15px;
+            border-radius: 50%;
+        }
+
+        .brand-name {
+            font-size: 22px;
+            font-weight: bold;
+            color: #8B0000;
+            letter-spacing: 1px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 600;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #8B0000;
+        }
+
+        /* Hero Banner */
+        .hero {
+            height: 500px;
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('images/palmoil.png');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            padding: 20px;
+        }
+
+        .hero img {
+            height: 130px;
+            margin-bottom: 20px;
+            border-radius: 50%;
+            border: 3px solid white;
+        }
+
+        .hero h1 {
+            font-size: 60px;
+            font-family: 'Great Vibes', cursive;
+            margin-bottom: 10px;
+        }
+
+        .hero p {
+            font-size: 18px;
+            letter-spacing: 2px;
+        }
+
+        /* Product Section */
+        .section-container {
+            padding: 80px 5%;
+            text-align: center;
+        }
+
+        .section-title {
+            font-family: 'Great Vibes', cursive;
+            font-size: 50px;
+            color: #333;
+            margin-bottom: 50px;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .product-card {
+            background: #fff;
+            border: 1px solid #eee;
+            border-radius: 20px;
+            padding: 25px;
+            transition: 0.4s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .product-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .product-card img {
+            width: 100%;
+            height: 250px;
+            object-fit: contain;
+            margin-bottom: 20px;
+        }
+
+        .product-card h3 {
+            font-size: 20px;
+            color: #8B0000;
+            margin-bottom: 10px;
+        }
+
+        .product-card p {
+            font-size: 14px;
+            color: #777;
+            margin-bottom: 20px;
+        }
+
+        .buy-btn {
+            background-color: #8B0000;
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            width: 100%;
+            transition: 0.3s;
+        }
+
+        .buy-btn:hover {
+            background-color: #a00000;
+        }
+
+        /* About Me Section */
+        .about-section {
+            background-color: #fdf2f2;
+            padding: 100px 5%;
+            text-align: center;
+        }
+
+        .about-content {
+            max-width: 900px;
+            margin: 0 auto;
+            line-height: 2;
+            font-size: 18px;
+            color: #444;
+        }
+
+        /* Contact Us Section */
+        .contact-section {
+            padding: 80px 5%;
+            text-align: center;
+            background-color: white;
+        }
+
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .contact-item h4 {
+            color: #8B0000;
+            margin-bottom: 10px;
+        }
+
+        footer {
+            background: #1a1a1a;
+            color: white;
+            text-align: center;
+            padding: 30px;
+            border-top: 5px solid #8B0000;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Top Status Bar -->
+    <div class="top-bar">
+        <span>📍 Dharmavaram, Sri Sathya Sai District, AP</span>
+        <span>📧 info@lalithaagroup.com</span>
+    </div>
+
+    <!-- Sticky Navigation -->
+    <nav>
+        <div class="nav-logo-container">
+            <img src="images/logo.png" alt="LALITHAA Logo">
+            <div class="brand-name">LALITHAAGROUP</div>
+        </div>
+        <ul>
+            <li><a href="#home">HOME</a></li>
+            <li><a href="#products">PRODUCTS</a></li>
+            <li><a href="#about">ABOUT US</a></li>
+            <li><a href="#contact">CONTACT US</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Banner (Hero) -->
+    <section class="hero" id="home">
+        <img src="images/logo.png" alt="LALITHAA Logo">
+        <h1>LALITHAAGROUP</h1>
+        <p>Live with Nature - Pure & Traditional Spices</p>
+    </section>
+
+    <!-- 8 Product Grid -->
+    <section class="section-container" id="products">
+        <h2 class="section-title">Our Premium Products</h2>
+        <div class="product-grid">
+
+            <!-- 1. Dry Chilli -->
+            <div class="product-card">
+                <img src="images/redchilli.png" alt="Dry Chilli">
+                <h3>Dry Chilli</h3>
+                <p>Pure & Spicy</p>
+                <button class="buy-btn">Buy Now</button>
+            </div>
+
+            <!-- 2. Turmeric Powder -->
+            <div class="product-card">
+                <img src="images/turmaric.png" alt="Turmeric Powder">
+                <h3>Turmeric Powder</h3>
+                <p>Natural & Antibacterial</p>
+                <button class="buy-btn">Buy Now</button>
+            </div>
+
+            <!-- 3. Coriander Powder -->
+            <div class="product-card">
+                <img src="images/coriender.png" alt="Coriander Powder">
+                <h3>Coriander Powder</h3>
+                <p>Aromatic & Fresh Flavor</p>
+                <button class="buy-btn">Buy Now</button>
+            </div>
+
+            <!-- 4. Garam Masala -->
+            <div class="product-card">
+                <img src="images/garammasala.png" alt="Garam Masala">
+                <h3>Garam Masala</h3>
+                <p>Rich & Spicy Blend</p>
+                <button class="buy-btn">Buy Now</button>
+            </div>
+
+            <!-- 5. Premium Rice -->
+            <div class="product-card">
+                <img src="images/rice.png" alt="Premium Rice">
+                <h3>Premium Rice</h3>
+                <p>Premium Quality</p>
+                <button class="buy-btn">Buy Now</button>
+            </div>
+
+            <!-- 6. Premium Palm Oil -->
+            <div class="product-card">
+                <img src="images/palmoil.png" alt="Premium Palm Oil">
+                <h3>Premium Palm Oil</h3>
+                <p>Healthy Cooking Solution</p>
+                <button class="buy-btn">Buy Now</button>
+            </div>
+
+            <!-- 7. Sunflower Oil -->
+            <div class="product-card">
+                <img src="images/sunfloweroil.png" alt="Sunflower Oil">
+                <h3>Sunflower Oil</h3>
+                <p>Light & Healthy</p>
+                <button class="buy-btn">Buy Now</button>
+            </div>
+
+            <!-- 8. Dry Coconut -->
+            <div class="product-card">
+                <img src="images/coconut.png" alt="Dry Coconut">
+                <h3>Dry Coconut</h3>
+                <p>Fresh & Pure</p>
+                <button class="buy-btn">Buy Now</button>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- About Us Section -->
+    <section class="about-section" id="about">
+        <div class="about-content">
+            <h2 class="section-title">About Us</h2>
+            <p>At <strong>LALITHAAGROUP</strong>, we bring you the finest quality spices, crafted through natural and
+                traditional methods without any adulteration. Our journey began with a foundation of purity and trust.
+                Our mission is to deliver the authentic taste of home and health in every packet. Our products are
+                naturally packed, ensuring they remain 100% chemical-free for your wellbeing.</p>
+        </div>
+    </section>
+
+    <!-- Contact Us Section -->
+    <section class="contact-section" id="contact">
+        <h2 class="section-title">Contact Us</h2>
+        <div class="contact-info">
+            <div class="contact-item">
+                <h4>📍 Address</h4>
+                <p>Dharmavaram,<br>Sri Sathya Sai District, AP</p>
+            </div>
+            <div class="contact-item">
+                <h4>📞 Phone / WhatsApp</h4>
+                <p>+91-XXXXXXXXXX</p>
+            </div>
+            <div class="contact-item">
+                <h4>📧 Email</h4>
+                <p>info@lalithaagroup.com</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 LALITHAAGROUP. All Rights Reserved.</p>
+    </footer>
+
+</body>
+
+</html>
