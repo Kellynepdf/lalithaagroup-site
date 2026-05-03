@@ -1,14 +1,12 @@
 <!DOCTYPE html>
 <html lang="te">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LALITHAAGROUP - Live with Nature</title>
-    <link rel="icon" href="images/logo.png" type="image/png">
+    <link rel="icon" href="logo.png" type="image/png">
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Great+Vibes&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -17,15 +15,36 @@
             font-family: 'Poppins', sans-serif;
             scroll-behavior: smooth;
         }
+        body {
+            background-color: #ffffff;
+            color: #333;
+        }
 
-        /* Dark Red Status Bar */
-        .top-bar {
-            background-color: #8B0000;
-            color: white;
-            padding: 10px 5%;
-            display: flex;
-            justify-content: space-between;
-            font-size: 14px;
+        /* Animations */
+        @keyframes move-forever {
+            0% { transform: translate3d(-90px, 0, 0); }
+            100% { transform: translate3d(85px, 0, 0); }
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
         }
 
         /* Navigation Bar */
@@ -33,59 +52,87 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 10px 5%;
-            background: white;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 10px 5%; /* Minimal vertical padding for sleek design */
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
             position: sticky;
             top: 0;
             z-index: 1000;
+            transition: all 0.3s ease;
         }
 
         .nav-logo-container {
             display: flex;
             align-items: center;
+            gap: 15px;
         }
 
         .nav-logo-container img {
-            height: 60px;
-            margin-right: 15px;
+            height: 140px; /* Enlarged significantly */
             border-radius: 50%;
+            margin-bottom: -40px; /* Logo overhangs the nav bar for sleek header */
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            position: relative;
+            z-index: 1001;
+            transition: transform 0.5s ease;
+        }
+
+        .nav-logo-container:hover img {
+            transform: rotate(360deg);
         }
 
         .brand-name {
-            font-size: 22px;
-            font-weight: bold;
+            font-size: 32px; /* Increased font size for legibility */
+            font-weight: 800;
             color: #8B0000;
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
+            margin-top: 15px; /* Align slightly downward with center of logo */
         }
 
         nav ul {
             display: flex;
             list-style: none;
-        }
-
-        nav ul li {
-            margin: 0 15px;
+            gap: 30px;
+            align-items: center;
         }
 
         nav ul li a {
             text-decoration: none;
             color: #333;
             font-weight: 600;
-            font-size: 14px;
-            transition: 0.3s;
+            font-size: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            padding: 5px 0;
+            transition: color 0.3s;
+            cursor: pointer;
         }
 
-        nav ul li a:hover {
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: #8B0000;
+            transition: width 0.3s ease;
+        }
+
+        nav ul li a:hover, nav ul li a.active-link {
             color: #8B0000;
         }
 
-        /* Hero Banner */
+        nav ul li a:hover::after, nav ul li a.active-link::after {
+            width: 100%;
+        }
+
+        /* Hero Banner & Slideshow Background */
         .hero {
-            height: 500px;
-            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('images/palmoil.png');
-            background-size: cover;
-            background-position: center;
+            position: relative;
+            height: 600px;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -93,78 +140,186 @@
             text-align: center;
             color: white;
             padding: 20px;
+            overflow: hidden;
+            background-color: #000; /* Solid black background */
+            background-image: url('hero1.png');
+            background-size: 100% 100%; /* Stretch to fit without cropping */
+            background-position: center;
+            background-repeat: no-repeat;
         }
 
-        .hero img {
-            height: 130px;
-            margin-bottom: 20px;
-            border-radius: 50%;
-            border: 3px solid white;
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #000; /* Solid black background */
+            background-image: url('hero2.png');
+            background-size: 100% 100%; /* Stretch to fit without cropping */
+            background-position: center;
+            background-repeat: no-repeat;
+            opacity: 0;
+            animation: heroFade 60s infinite; /* 30s per image */
+            z-index: 0;
         }
 
-        .hero h1 {
-            font-size: 60px;
-            font-family: 'Great Vibes', cursive;
-            margin-bottom: 10px;
+        @keyframes heroFade {
+            0%, 45% { opacity: 0; }
+            50%, 95% { opacity: 1; }
+            100% { opacity: 0; }
         }
 
-        .hero p {
-            font-size: 18px;
-            letter-spacing: 2px;
+        /* Wave Animation */
+        .wave-container {
+            position: absolute;
+            bottom: -40px; /* Lower the waves so they don't cover the hero image */
+            left: 0;
+            width: 100%;
+            height: 100px;
+            line-height: 0;
+            z-index: 2;
         }
 
-        /* Product Section */
-        .section-container {
+        .waves {
+            position: relative;
+            width: 100%;
+            height: 100px;
+            margin-bottom: -7px;
+            min-height: 100px;
+            max-height: 150px;
+        }
+
+        .parallax > use {
+            animation: move-forever 25s cubic-bezier(.55, .5, .45, .5) infinite;
+        }
+        .parallax > use:nth-child(1) { animation-delay: -2s; animation-duration: 7s; }
+        .parallax > use:nth-child(2) { animation-delay: -3s; animation-duration: 10s; }
+        .parallax > use:nth-child(3) { animation-delay: -4s; animation-duration: 13s; }
+        .parallax > use:nth-child(4) { animation-delay: -5s; animation-duration: 20s; }
+
+        /* Dynamic Content Sections */
+        .content-section {
+            display: none; /* Hidden by default */
             padding: 80px 5%;
             text-align: center;
+            background-color: #ffffff; /* Restored to white */
+            animation: fadeIn 0.6s ease-out forwards;
+            min-height: 500px;
         }
 
         .section-title {
-            font-family: 'Great Vibes', cursive;
-            font-size: 50px;
-            color: #333;
+            font-family: 'Poppins', sans-serif;
+            font-size: 45px;
+            font-weight: 800;
+            color: #8B0000; /* Restored brand color */
+            letter-spacing: 2px;
             margin-bottom: 50px;
+            text-transform: uppercase;
+            animation: floating 4s ease-in-out infinite; /* Anti-gravity floating animation */
         }
 
-        .product-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-        }
-
-        .product-card {
-            background: #fff;
-            border: 1px solid #eee;
-            border-radius: 20px;
-            padding: 25px;
-            transition: 0.4s;
+        /* Welcome Section Styles (Text Relocated from Hero) */
+        .welcome-header {
+            margin-bottom: 40px;
             display: flex;
             flex-direction: column;
             align-items: center;
         }
 
+        .welcome-title {
+            font-size: 50px; /* Increased font size for hierarchy */
+            font-family: 'Poppins', sans-serif;
+            font-weight: 800;
+            color: #8B0000; /* Restored brand color */
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            animation: floating 4s ease-in-out infinite;
+            letter-spacing: 2px;
+        }
+
+        .welcome-tagline {
+            font-size: 14px; /* Significantly smaller */
+            letter-spacing: 2px;
+            font-weight: 600;
+            color: #555; /* Dark grey for contrast on white */
+            animation: floating 5s ease-in-out infinite alternate;
+            max-width: 300px; /* Shorter width */
+            margin: 0 auto;
+            line-height: 1.5;
+            text-align: center;
+            display: block;
+        }
+
+        /* Home Content Details */
+        .home-content-box {
+            max-width: 900px;
+            margin: 0 auto;
+            line-height: 1.8;
+            font-size: 20px;
+            color: #ffffff; /* White text */
+            background: rgba(0, 0, 0, 0.8); /* Lite Transparent Black */
+            padding: 40px;
+            border-radius: 15px; /* Rounded corners */
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1); 
+            text-align: justify; /* Perfectly justified text */
+            display: block; /* Removed flex to allow proper text justification */
+        }
+
+        .home-content-box strong {
+            color: #ff4d4d;
+        }
+
+        /* Product Grid */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr); /* Exactly 5 items per row for perfect alignment */
+            gap: 20px;
+        }
+
+        .product-card {
+            background: #ffffff;
+            border: 1pt solid #000000; /* Solid Black 1pt border */
+            border-radius: 15px;
+            padding: 10px; /* Reduced padding for compactness */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between; /* Push button to bottom, image to top */
+            height: 100%; /* Ensure consistent height */
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
+        }
+
         .product-card:hover {
-            transform: translateY(-15px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
         }
 
         .product-card img {
             width: 100%;
             height: 250px;
-            object-fit: contain;
-            margin-bottom: 20px;
+            object-fit: cover;
+            margin-bottom: 15px;
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .product-card:hover img {
+            transform: scale(1.05);
         }
 
         .product-card h3 {
-            font-size: 20px;
-            color: #8B0000;
-            margin-bottom: 10px;
+            font-size: 18px; /* Slightly smaller */
+            color: #8B0000; /* Match branding */
+            margin-bottom: 8px;
+            font-weight: 600;
         }
 
         .product-card p {
-            font-size: 14px;
-            color: #777;
-            margin-bottom: 20px;
+            font-size: 13px; /* Slightly smaller */
+            color: #666;
+            margin-bottom: 15px;
         }
 
         .buy-btn {
@@ -177,44 +332,63 @@
             font-weight: bold;
             width: 100%;
             transition: 0.3s;
+            position: relative;
+            overflow: hidden;
+            font-size: 15px;
+        }
+
+        .buy-btn::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 300%;
+            height: 300%;
+            background: rgba(255, 255, 255, 0.2);
+            transform: translate(-50%, -50%) rotate(45deg) translateY(100%);
+            transition: transform 0.5s ease;
         }
 
         .buy-btn:hover {
             background-color: #a00000;
         }
 
-        /* About Me Section */
-        .about-section {
-            background-color: #fdf2f2;
-            padding: 100px 5%;
-            text-align: center;
-        }
-
-        .about-content {
-            max-width: 900px;
-            margin: 0 auto;
-            line-height: 2;
-            font-size: 18px;
-            color: #444;
+        .buy-btn:hover::after {
+            transform: translate(-50%, -50%) rotate(45deg) translateY(-100%);
         }
 
         /* Contact Us Section */
-        .contact-section {
-            padding: 80px 5%;
-            text-align: center;
-            background-color: white;
-        }
-
         .contact-info {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 40px;
             margin-top: 40px;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .contact-item {
+            background: rgba(0, 0, 0, 0.8); /* Lite Transparent Black */
+            padding: 30px;
+            border-radius: 15px; /* Rounded corners */
+            border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle white border */
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
 
         .contact-item h4 {
-            color: #8B0000;
-            margin-bottom: 10px;
+            color: #ff4d4d;
+            margin-bottom: 15px;
+            font-size: 22px;
+        }
+
+        .contact-item p {
+            color: #ffffff; /* White text */
+            line-height: 1.6;
+            text-align: justify; /* Justified */
         }
 
         footer {
@@ -223,145 +397,242 @@
             text-align: center;
             padding: 30px;
             border-top: 5px solid #8B0000;
+            margin-top: auto;
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 1024px) {
+            .product-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                gap: 15px;
+                padding: 15px;
+            }
+
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 15px;
+            }
+
+            .hero {
+                height: 500px;
+            }
+
+            .welcome-title {
+                font-size: 32px;
+            }
+
+            .welcome-tagline {
+                font-size: 14px;
+            }
+
+            .section-title {
+                font-size: 35px;
+            }
+
+            .product-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .product-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 
 <body>
 
-    <!-- Top Status Bar -->
-    <div class="top-bar">
-        <span>📍 Dharmavaram, Sri Sathya Sai District, AP</span>
-        <span>📧 info@lalithaagroup.com</span>
-    </div>
-
     <!-- Sticky Navigation -->
     <nav>
         <div class="nav-logo-container">
-            <img src="images/logo.png" alt="LALITHAA Logo">
+            <img src="logo.png" alt="LALITHAA Logo">
             <div class="brand-name">LALITHAAGROUP</div>
         </div>
         <ul>
-            <li><a href="#home">HOME</a></li>
-            <li><a href="#products">PRODUCTS</a></li>
-            <li><a href="#about">ABOUT US</a></li>
-            <li><a href="#contact">CONTACT US</a></li>
+            <li><a class="nav-link active-link" onclick="showSection('home-section', this)">HOME</a></li>
+            <li><a class="nav-link" onclick="showSection('products-section', this)">PRODUCTS</a></li>
+            <li><a class="nav-link" onclick="showSection('about-section', this)">ABOUT US</a></li>
+            <li><a class="nav-link" onclick="showSection('contact-section', this)">CONTACT US</a></li>
         </ul>
     </nav>
 
-    <!-- Main Banner (Hero) -->
-    <section class="hero" id="home">
-        <img src="images/logo.png" alt="LALITHAA Logo">
-        <h1>LALITHAAGROUP</h1>
-        <p>Live with Nature - Pure & Traditional Spices</p>
-    </section>
-
-    <!-- 8 Product Grid -->
-    <section class="section-container" id="products">
-        <h2 class="section-title">Our Premium Products</h2>
-        <div class="product-grid">
-
-            <!-- 1. Dry Chilli -->
-            <div class="product-card">
-                <img src="images/redchilli.png" alt="Dry Chilli">
-                <h3>Dry Chilli</h3>
-                <p>Pure & Spicy</p>
-                <button class="buy-btn">Buy Now</button>
-            </div>
-
-            <!-- 2. Turmeric Powder -->
-            <div class="product-card">
-                <img src="images/turmaric.png" alt="Turmeric Powder">
-                <h3>Turmeric Powder</h3>
-                <p>Natural & Antibacterial</p>
-                <button class="buy-btn">Buy Now</button>
-            </div>
-
-            <!-- 3. Coriander Powder -->
-            <div class="product-card">
-                <img src="images/coriender.png" alt="Coriander Powder">
-                <h3>Coriander Powder</h3>
-                <p>Aromatic & Fresh Flavor</p>
-                <button class="buy-btn">Buy Now</button>
-            </div>
-
-            <!-- 4. Garam Masala -->
-            <div class="product-card">
-                <img src="images/garammasala.png" alt="Garam Masala">
-                <h3>Garam Masala</h3>
-                <p>Rich & Spicy Blend</p>
-                <button class="buy-btn">Buy Now</button>
-            </div>
-
-            <!-- 5. Premium Rice -->
-            <div class="product-card">
-                <img src="images/rice.png" alt="Premium Rice">
-                <h3>Premium Rice</h3>
-                <p>Premium Quality</p>
-                <button class="buy-btn">Buy Now</button>
-            </div>
-
-            <!-- 6. Premium Palm Oil -->
-            <div class="product-card">
-                <img src="images/palmoil.png" alt="Premium Palm Oil">
-                <h3>Premium Palm Oil</h3>
-                <p>Healthy Cooking Solution</p>
-                <button class="buy-btn">Buy Now</button>
-            </div>
-
-            <!-- 7. Sunflower Oil -->
-            <div class="product-card">
-                <img src="images/sunfloweroil.png" alt="Sunflower Oil">
-                <h3>Sunflower Oil</h3>
-                <p>Light & Healthy</p>
-                <button class="buy-btn">Buy Now</button>
-            </div>
-
-            <!-- 8. Dry Coconut -->
-            <div class="product-card">
-                <img src="images/coconut.png" alt="Dry Coconut">
-                <h3>Dry Coconut</h3>
-                <p>Fresh & Pure</p>
-                <button class="buy-btn">Buy Now</button>
-            </div>
-
+    <!-- Main Banner (Hero) - Empty Foreground as requested -->
+    <section class="hero" id="hero-banner">
+        <!-- Wave Animation -->
+        <div class="wave-container">
+            <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+            viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+                <defs>
+                    <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+                </defs>
+                <g class="parallax">
+                    <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(255,255,255,0.7)" />
+                    <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(255,255,255,0.5)" />
+                    <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(255,255,255,0.3)" />
+                    <use xlink:href="#gentle-wave" x="48" y="7" fill="#ffffff" />
+                </g>
+            </svg>
         </div>
     </section>
 
-    <!-- About Us Section -->
-    <section class="about-section" id="about">
-        <div class="about-content">
+    <!-- Dynamic Content Container -->
+    <div id="dynamic-content">
+        
+        <!-- Home Section -->
+        <section id="home-section" class="content-section" style="display: block;">
+            <!-- Text relocated from Hero -->
+            <div class="welcome-header">
+                <h1 class="welcome-title">LALITHAAGROUP</h1>
+                <p class="welcome-tagline">Live with Nature - Pure & Traditional Spices</p>
+            </div>
+
+            <div class="home-content-box">
+                <p>At <strong>LALITHAAGROUP</strong>, we are committed to bringing the pure and untouched essence of nature directly to your kitchen. Explore our wide range of premium, chemical-free spices and everyday essentials designed for a healthier lifestyle. Navigate through our sections to discover more!</p>
+            </div>
+        </section>
+
+        <!-- Products Section -->
+        <section id="products-section" class="content-section">
+            <h2 class="section-title">Our Premium Products</h2>
+            <div class="product-grid">
+                <!-- 1. Red Chilli -->
+                <div class="product-card">
+                    <img src="redchilli.png" alt="Red Chilli">
+                    <h3>Red Chilli</h3>
+                    <p>Pure & Spicy</p>
+                    <button class="buy-btn">View Specifications</button>
+                </div>
+                <!-- 2. Turmeric Powder -->
+                <div class="product-card">
+                    <img src="turmaric.png" alt="Turmeric Powder">
+                    <h3>Turmeric Powder</h3>
+                    <p>Natural & Antibacterial</p>
+                    <button class="buy-btn">View Specifications</button>
+                </div>
+                <!-- 3. Coriander Powder -->
+                <div class="product-card">
+                    <img src="coriender.png" alt="Coriander Powder">
+                    <h3>Coriander Powder</h3>
+                    <p>Aromatic & Fresh Flavor</p>
+                    <button class="buy-btn">View Specifications</button>
+                </div>
+                <!-- 4. Garam Masala -->
+                <div class="product-card">
+                    <img src="garammasala.png" alt="Garam Masala">
+                    <h3>Garam Masala</h3>
+                    <p>Rich & Spicy Blend</p>
+                    <button class="buy-btn">View Specifications</button>
+                </div>
+                <!-- 5. Sambar Powder -->
+                <div class="product-card">
+                    <img src="sambar.png" alt="Sambar Powder">
+                    <h3>Sambar Powder</h3>
+                    <p>Authentic & Flavorful</p>
+                    <button class="buy-btn">View Specifications</button>
+                </div>
+                <!-- 6. Rasam Powder -->
+                <div class="product-card">
+                    <img src="rasam.png" alt="Rasam Powder">
+                    <h3>Rasam Powder</h3>
+                    <p>Traditional & Spicy</p>
+                    <button class="buy-btn">View Specifications</button>
+                </div>
+                <!-- 7. Dry Chilli -->
+                <div class="product-card">
+                    <img src="drychilli.png" alt="Dry Chilli">
+                    <h3>Dry Chilli</h3>
+                    <p>Premium Quality</p>
+                    <button class="buy-btn">View Specifications</button>
+                </div>
+                <!-- 8. Rice -->
+                <div class="product-card">
+                    <img src="rice.png" alt="Rice">
+                    <h3>Rice</h3>
+                    <p>Premium Quality</p>
+                    <button class="buy-btn">View Specifications</button>
+                </div>
+                <!-- 9. Palm Oil -->
+                <div class="product-card">
+                    <img src="palmoil.png" alt="Palm Oil">
+                    <h3>Palm Oil</h3>
+                    <p>Healthy Cooking Solution</p>
+                    <button class="buy-btn">View Specifications</button>
+                </div>
+                <!-- 10. Sunflower Oil -->
+                <div class="product-card">
+                    <img src="sunfloweroil.png" alt="Sunflower Oil">
+                    <h3>Sunflower Oil</h3>
+                    <p>Light & Healthy</p>
+                    <button class="buy-btn">View Specifications</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Us Section -->
+        <section id="about-section" class="content-section">
             <h2 class="section-title">About Us</h2>
-            <p>At <strong>LALITHAAGROUP</strong>, we bring you the finest quality spices, crafted through natural and
-                traditional methods without any adulteration. Our journey began with a foundation of purity and trust.
-                Our mission is to deliver the authentic taste of home and health in every packet. Our products are
-                naturally packed, ensuring they remain 100% chemical-free for your wellbeing.</p>
-        </div>
-    </section>
+            <div class="home-content-box">
+                <p>At <strong>LALITHAAGROUP</strong>, we bring you the finest quality spices, crafted through natural and traditional methods without any adulteration. Our journey began with a foundation of purity and trust. Our mission is to deliver the authentic taste of home and health in every packet. Our products are naturally packed, ensuring they remain 100% chemical-free for your wellbeing.</p>
+            </div>
+        </section>
 
-    <!-- Contact Us Section -->
-    <section class="contact-section" id="contact">
-        <h2 class="section-title">Contact Us</h2>
-        <div class="contact-info">
-            <div class="contact-item">
-                <h4>📍 Address</h4>
-                <p>Dharmavaram,<br>Sri Sathya Sai District, AP</p>
+        <!-- Contact Us Section -->
+        <section id="contact-section" class="content-section">
+            <h2 class="section-title">Contact Us</h2>
+            <div class="contact-info">
+                <div class="contact-item" style="grid-column: 1 / -1;">
+                    <h4>📍 Address</h4>
+                    <p>LALITHAA GROUP (LALITHAA EDIBLE OIL FATS INDIA PRIVATE LIMITED (LEF)) c/o WEWORK KRISHE EMERALD, KONDAPUR, LAXMI CYBER CITY, WHITEFIELDS, GACHIBOWLI, HYDERABAD 500081.</p>
+                    <p style="margin-top: 15px;">📧 <strong>Email:</strong> <a href="mailto:info@lalithaagroup.com" style="color: #ffffff; text-decoration: underline;">info@lalithaagroup.com</a></p>
+                </div>
+                <div class="contact-item" style="grid-column: 1 / -1;">
+                    <h4>🗺️ Find Us Here</h4>
+                    <iframe src="https://maps.google.com/maps?q=WeWork%20Krishe%20Emerald,%20Kondapur&t=&z=15&ie=UTF8&iwloc=&output=embed" width="100%" height="300" style="border:0; border-radius: 10px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
             </div>
-            <div class="contact-item">
-                <h4>📞 Phone / WhatsApp</h4>
-                <p>+91-XXXXXXXXXX</p>
-            </div>
-            <div class="contact-item">
-                <h4>📧 Email</h4>
-                <p>info@lalithaagroup.com</p>
-            </div>
-        </div>
-    </section>
+        </section>
+
+    </div>
 
     <footer>
         <p>&copy; 2026 LALITHAAGROUP. All Rights Reserved.</p>
     </footer>
 
-</body>
+    <!-- JavaScript for Dynamic Section Switching -->
+    <script>
+        function showSection(sectionId, element) {
+            // Hide all sections
+            const sections = document.querySelectorAll('.content-section');
+            sections.forEach(sec => {
+                sec.style.display = 'none';
+            });
 
+            // Remove active class from all nav links
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => {
+                link.classList.remove('active-link');
+            });
+
+            // Show the target section
+            const targetSection = document.getElementById(sectionId);
+            if (targetSection) {
+                targetSection.style.display = 'block';
+            }
+
+            // Add active class to the clicked nav link
+            if (element) {
+                element.classList.add('active-link');
+            }
+        }
+    </script>
+</body>
 </html>
