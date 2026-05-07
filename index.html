@@ -579,6 +579,44 @@
                 grid-template-columns: 1fr;
             }
         }
+
+        /* Global Modal Styles */
+        .spec-modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8); /* Dark backdrop overlay */
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .spec-modal-content {
+            background: #fff; /* White background */
+            padding: 30px;
+            border-radius: 15px;
+            max-width: 600px;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            text-align: left;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            color: #000; /* Black text */
+        }
+
+        .spec-modal-close {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 28px;
+            cursor: pointer;
+            color: #8B0000;
+            font-weight: bold;
+        }
     </style>
 </head>
 
@@ -646,89 +684,94 @@
                     <img src="redchilli.png" alt="Red Chilli">
                     <h3>Red Chilli</h3>
                     <p>Pure & Spicy</p>
-                    <button class="buy-btn">View Specifications</button>
+                    <button class="buy-btn" onclick="openProductModal('Red Chilli Powder', '“Spice Up Your Dishes with the Fiery Goodness of Lalithaa Red Chilli Powder!”', 'Lalithaa Red Chilli Powder ensures that only the finest quality ingredients make their way to your kitchen. Sourced directly from a trusted network of farmers, the chillies are handpicked, traditionally sun-dried, and thoroughly cleaned.', ['Crisp, Sun-dried and Thoroughly Cleaned', 'Sourced directly from farmers', 'Selected by experts', 'Free from Added Colours and Flavours'], 'Bring your recipes to life with the perfect blend of spiciness and flavour—choose Lalithaa Red Chilli Powder, and make every meal unforgettable!')">View Specifications</button>
                 </div>
                 <!-- 2. Turmeric Powder -->
                 <div class="product-card">
                     <img src="turmaric.png" alt="Turmeric Powder">
                     <h3>Turmeric Powder</h3>
                     <p>Natural & Antibacterial</p>
-                    <button class="buy-btn">View Specifications</button>
+                    <button class="buy-btn" onclick="openProductModal('Turmeric Powder', '“Bring Golden Health and Authentic Flavour to Every Meal with Lalithaa Turmeric Powder!”', 'Lalithaa Turmeric Powder ensures that only the purest, high-curcumin turmeric reaches your home, upholding our commitment to quality and wellness. Sourced directly from dedicated farmers who specialize in traditional cultivation, only the most matured and firm turmeric fingers are handpicked. These are then carefully sun-dried and processed using traditional methods to lock in their natural oils, vibrant golden color, and medicinal properties.', ['Rich in Natural Curcumin: High potency for better health and immunity.', 'Traditionally Sun-dried: Preserves the authentic earthy aroma and deep golden hue.', 'Sourced Directly from Farmers: Ensuring fair trade and the freshest harvest.', 'Selected by Experts: Rigorous quality checks to provide only the best grade turmeric.', '100% Pure & Safe: Completely free from added colors, fillers, or artificial preservatives.'], 'Enhance the taste and nutritional value of your daily cooking—choose Lalithaa Turmeric Powder for a touch of purity in every pinch!')">View Specifications</button>
                 </div>
                 <!-- 3. Coriander Powder -->
                 <div class="product-card">
                     <img src="coriender.png" alt="Coriander Powder">
                     <h3>Coriander Powder</h3>
                     <p>Aromatic & Fresh Flavor</p>
-                    <button class="buy-btn">View Specifications</button>
+                    <button class="buy-btn" onclick="openProductModal('Coriander Powder', '“Transform Your Recipes with the Soulful Aroma of Lalithaa Coriander Powder!”', 'Lalithaa Coriander Powder ensures that every pinch brings a burst of freshness to your kitchen, staying true to our promise of purity and tradition. Sourced directly from the finest fields, only the most fragrant and full-bodied coriander seeds are selected. These seeds are slow-roasted to perfection to release their deep, woody essential oils and then ground carefully to retain their refreshing, citrusy notes and earthy soul.', ['Intense & Soulful Aroma: Slow-roasted seeds for a long-lasting, inviting fragrance.', 'Earthful & Fresh Flavor: Adds a rich, cooling depth to every spice blend.', 'Sourced Directly from Farmers: Handpicked from the best harvest cycles.', 'Expertly Processed: Ground at optimal temperatures to keep the natural oils intact.', 'Pure & Untouched: 100% natural with no artificial scents or additives.'], 'Elevate the essence of your curries and gravies with an unmistakable scent—choose Lalithaa Coriander Powder, and let the aroma tell the story of quality!')">View Specifications</button>
                 </div>
                 <!-- 4. Garam Masala -->
                 <div class="product-card">
                     <img src="garammasala.png" alt="Garam Masala">
                     <h3>Garam Masala</h3>
                     <p>Rich & Spicy Blend</p>
-                    <button class="buy-btn">View Specifications</button>
+                    <button class="buy-btn" onclick="openProductModal('Garam Masala', '“Awaken the Royal Flavors of Your Kitchen with the Majestic Aroma of Lalithaa Garam Masala!”', 'Lalithaa Garam Masala ensures that every dish you cook carries the signature of a master chef, staying true to our promise of delivering a rich, heritage-inspired spice blend. Our Garam Masala is a symphony of handpicked whole spices—including cloves, cinnamon, cardamom, and black pepper, sourced from premium spice belts. Each spice is individually roasted and masterfully blended to ensure a robust, warm, and multi-layered aroma.', ['Royal & Robust Aroma: A master-blend of premium whole spices for a lingering fragrance.', 'Perfectly Balanced Heat: Expertly crafted to provide warmth without overpowering the dish.', 'Individually Slow-Roasted: Every spice is roasted separately to lock in its unique essential oils.', 'Authentic Traditional Recipe: Recreating the timeless taste of homemade spice mixes.', 'Purity Guaranteed: Free from stone powder, starch, or any artificial flavor enhancers.'], 'Turn every ordinary meal into a grand celebration of taste—choose Lalithaa Garam Masala, the secret ingredient for a perfect culinary finish!')">View Specifications</button>
                 </div>
                 <!-- 5. Sambar Powder -->
                 <div class="product-card">
                     <img src="sambar.png" alt="Sambar Powder">
                     <h3>Sambar Powder</h3>
                     <p>Authentic & Flavorful</p>
-                    <button class="buy-btn">View Specifications</button>
+                    <button class="buy-btn" onclick="openProductModal('Sambar Powder', '“Experience the Heart of South India with the Heavenly Aroma of Lalithaa Sambar Powder!”', 'Lalithaa Sambar Powder ensures that every ladle of your sambar is a perfect balance of tradition and taste. Sourced from the finest spice gardens, we use a time-honored recipe that blends premium lentils with hand-selected spices like coriander, cumin, and fenugreek. Each ingredient is meticulously slow-roasted to develop a deep, nutty complexity and a vibrant, appetizing scent that fills your home, ensuring a ‘restaurant-style’ soul in every bite.', ['Authentic Traditional Blend: A perfect ratio of spices and lentils for the classic South Indian taste.', 'Aromatic & Flavourful: Slow-roasted ingredients that release a rich, mouth-watering fragrance.', 'Rich in Natural Spices: Enhances the nutritional value and digestion of your daily meal.', 'Expertly Crafted: Ground precisely to ensure a smooth texture and consistent flavour.', 'No Hidden Additives: 100% natural, free from artificial colours and preservatives.'], 'Make your breakfast and meals truly special—choose Lalithaa Sambar Powder, and bring the authentic taste of tradition to your table!')">View Specifications</button>
                 </div>
                 <!-- 6. Rasam Powder -->
                 <div class="product-card">
                     <img src="rasam.png" alt="Rasam Powder">
                     <h3>Rasam Powder</h3>
                     <p>Traditional & Spicy</p>
-                    <button class="buy-btn">View Specifications</button>
+                    <button class="buy-btn" onclick="openProductModal('Rasam Powder', '“Refresh Your Senses with the Soul-Warming Aroma of Lalithaa Rasam Powder!”', 'Lalithaa Rasam Powder ensures that every bowl of rasam provides the perfect comfort and zest, staying true to our promise of purity and authentic grandmother\'s-kitchen taste. Sourced from the best spice regions, our blend features a vigorous mix of premium black pepper, cumin, and handpicked spices. Each ingredient is perfectly toasted to enhance its digestive properties and release a sharp, revitalizing fragrance.', ['Zesty & Revitalizing Aroma: A sharp blend of pepper and cumin for an instant appetite boost.', 'Digestive Goodness: Packed with natural spices known for their soothing and health benefits.', 'Perfectly Balanced Spice: Delivers the right amount of heat and tang in every sip.', 'Expertly Roasted: Processed with care to retain the potency of essential oils.', '100% Natural Purity: No artificial flavors, colors, or MSG—just pure spice.'], 'This carefully crafted powder gives your rasam that signature tangy kick and a light, peppery finish that is both appetizing and deeply satisfying. Choose Lalithaa Rasam Powder for the perfect balance of health and heritage!')">View Specifications</button>
                 </div>
                 <!-- 7. Dry Chilli -->
                 <div class="product-card">
                     <img src="drychilli.png" alt="Dry Chilli">
                     <h3>Dry Chilli</h3>
                     <p>Premium Quality</p>
-                    <button class="buy-btn">View Specifications</button>
+                    <button class="buy-btn" onclick="openProductModal('Dry Chilli', '“Ignite Your Culinary Passion with the Bold and Fiery Lalithaa Dry Chilli!”', 'Lalithaa Dry Chilli brings the authentic heat of the fields directly to your tadka, staying true to our promise of delivering unadulterated and premium quality spices. Sourced directly from the sun-drenched farms of the best chilli belts, only the most vibrant, firm, and fully matured chillies are selected by our experts. These are traditionally sun-dried on clean platforms to lock in their intense capsaicin levels and deep red color.', ['Crisp & Sun-Dried: Perfectly dried to maintain a long shelf life and natural crunch.', 'Vibrant Natural Colour: Deep red hue that enhances the visual appeal of any dish.', 'High Pungency: Carefully selected for the right balance of heat and flavor.', 'Thoroughly Cleaned: Hand-sorted to remove impurities, ensuring only the best pods reach you.', 'Farm Fresh Quality: Directly sourced to preserve the original farm-fresh aroma and oils.'], 'Every chilli is carefully screened to ensure it is crisp, stalk-less, and free from dust, giving you the perfect \'tadka\' crackle and a powerful flavour punch. Add a soulful spark to your pickles, curries, and dals—choose Lalithaa Dry Chilli!')">View Specifications</button>
                 </div>
                 <!-- 8. Rice -->
                 <div class="product-card">
                     <img src="rice.png" alt="Rice">
                     <h3>Rice</h3>
                     <p>Premium Quality</p>
-                    <button class="buy-btn">View Specifications</button>
+                    <button class="buy-btn" onclick="openProductModal('Premium Rice Range', '“Experience the Perfection of Every Grain with the Pure Essence of Lalithaa Rice!”', 'Lalithaa Rice ensures that every meal is a celebration of taste and health. Sourced directly from the most fertile paddy fields, our rice undergoes a rigorous selection process where only the most matured grains are picked. Whether it is our exquisite, long-grain Basmati known for its heavenly aroma, or our light and nutritious Sona Masoori perfect for daily health, we maintain the highest standards of processing.', ['Premium Basmati: Extra-long grains with a rich, inviting aroma for special occasions.', 'Authentic Sona Masoori: Lightweight, aromatic, and easy to digest—ideal for everyday wellness.', '10+ Superior Varieties: Including HMT, BPT, Brown Rice, Kolam, and more.', 'Naturally Aged: Aged to perfection to ensure fluffiness and superior taste.', 'Expertly Processed: Advanced milling technology to retain the bran\'s natural goodness and essential nutrients.', 'Purity at its Best: Thoroughly cleaned and free from stones, dust, or artificial polishing agents.'], 'Each grain is perfectly aged and moisture-controlled to ensure it remains non-sticky, fluffy, and full of natural nutrition after cooking. Elevate your dining experience—choose Lalithaa Rice, where quality meets tradition!')">View Specifications</button>
                 </div>
                 <!-- 9. Palm Oil -->
                 <div class="product-card">
                     <img src="palmoil.png" alt="Palm Oil">
                     <h3>Palm Oil</h3>
                     <p>Healthy Cooking Solution</p>
-                    <button class="buy-btn">View Specifications</button>
+                    <button class="buy-btn" onclick="openProductModal('Refined Palm Oil', '“Enhance Your Cooking with the Golden Purity and Health of Lalithaa Palm Oil!”', 'Lalithaa Palm Oil ensures that your family enjoys delicious meals without compromising on health, staying true to our promise of delivering superior quality and refined purity. Sourced from the finest plantations, our Palm Oil undergoes a multi-stage refining process that removes impurities while retaining its natural stability.', ['High Smoke Point: Ideal for deep frying as it remains stable at high temperatures.', 'Neutral Taste: Perfectly preserves and enhances the natural flavor of your ingredients.', 'Fortified with Vitamins: Naturally rich in antioxidants like Vitamin E and Vitamin A.', 'Cholesterol Free: A heart-healthy option for balanced daily cooking.', 'Crystal Clear Purity: Thoroughly refined and filtered to ensure a light and non-greasy texture.', 'Long Shelf Life: Maintains freshness for longer periods, making it a reliable kitchen essential.'], 'It is rich in Vitamin A and Vitamin E, making it a nutritious choice for your daily kitchen needs. With its high smoke point, it is the perfect companion for deep frying, sautéing, and traditional Indian cooking. Bring home the perfect blend of taste and wellness!')">View Specifications</button>
                 </div>
                 <!-- 10. Sunflower Oil -->
                 <div class="product-card">
                     <img src="sunfloweroil.png" alt="Sunflower Oil">
                     <h3>Sunflower Oil</h3>
                     <p>Light & Healthy</p>
-                    <button class="buy-btn">View Specifications</button>
+                    <button class="buy-btn" onclick="openProductModal('Refined Sunflower Oil', '“Celebrate Heart-Healthy Cooking with the Golden Glow of Lalithaa Sunflower Oil!”', 'Lalithaa Sunflower Oil ensures that every meal you serve is as light as it is delicious. Sourced from the finest sunflower seeds, our oil is triple-refined to achieve a crystal-clear, lightweight texture. It is naturally rich in Vitamin E and Omega-6 fatty acids, which help in maintaining a healthy heart and glowing skin.', ['Light & Non-Greasy: Low oil absorption ensures your food stays fresh and light.', 'Heart-Friendly: Naturally high in polyunsaturated fats for better cardiovascular health.', 'Immunity Booster: Rich in Vitamin E, a powerful antioxidant that strengthens your body.', 'High Smoke Point: Perfect for all types of Indian cooking, from tempering (tadka) to deep frying.', 'Odourless & Clear: Maintains the authentic taste and aroma of your spices and ingredients.', '100% Pure & Refined: Processed with advanced technology to ensure zero impurities and maximum clarity.'], 'Its low-absorption technology ensures that your favorite snacks and curries don\'t feel greasy, keeping them light on the stomach and high on taste. Choose Lalithaa Sunflower Oil, the perfect partner for a fit and active lifestyle!')">View Specifications</button>
                 </div>
                 <!-- 11. Dry Coconut -->
                 <div class="product-card">
                     <img src="coconut.png" alt="Dry Coconut">
                     <h3>Dry Coconut</h3>
                     <p>Premium Quality Sun-Dried</p>
-                    <button class="buy-btn">View Specifications</button>
+                    <button class="buy-btn" onclick="openProductModal('Dry Coconut', '“Experience the Rich, Nutritious Goodness of Nature with Lalithaa Dry Coconut!”', 'Lalithaa Dry Coconut ensures that you get the most authentic taste and richness in every bite. Sourced directly from the most fertile coastal groves, only the fully matured and heavy coconuts are hand-selected by our experts. These are naturally dried under controlled conditions to ensure they retain their high natural oil content and sweet, nutty flavor.', ['High Natural Oil Content: Rich in healthy fats that enhance the flavor of your dishes.', 'Naturally Sun-Dried: Processed traditionally to lock in the authentic taste and aroma.', 'Sourced from Premium Groves: Handpicked from the finest harvests for superior quality.', 'Rich in Fiber: A great source of dietary fiber and essential minerals for better health.', 'Crisp & Pure: Carefully cleaned and dried to ensure a long shelf life without any preservatives.', 'Versatile Kitchen Essential: Perfect for traditional recipes, spice powders, and healthy snacking.'], 'Every piece is thoroughly inspected for quality and purity. Whether used for traditional sweets, spicy chutneys, or aromatic masalas, it adds a distinct richness and healthy depth to your culinary creations. Bring the essence of tradition to your kitchen—choose Lalithaa Dry Coconut!')">View Specifications</button>
                 </div>
             </div>
         </section>
 
         <!-- About Us Section -->
         <section id="about-section" class="content-section">
-            <h2 class="section-title">About Us</h2>
+            <h2 class="section-title">ABOUT US</h2>
             <div class="home-content-box">
-                <p>At <strong>LALITHAAGROUP</strong>, we bring you the finest quality spices, crafted through natural
-                    and traditional methods without any adulteration. Our journey began with a foundation of purity and
-                    trust. Our mission is to deliver the authentic taste of home and health in every packet. Our
-                    products are naturally packed, ensuring they remain 100% chemical-free for your wellbeing.</p>
+                <p><strong>Company Overview:</strong> Lalithaa Group, officially known as Lalithaa Edible Oil Fats India Private Limited, is a Hyderabad-based company committed to delivering high-quality edible oils and spices. We have grown into a trusted name, offering authentic and flavourful spices to meet diverse customer needs.</p>
+                <br>
+                <p><strong>Quality & Infrastructure:</strong> Quality is at the heart of everything we do. Our products meet strict industry standards and are backed by recognized quality certifications. With state-of-the-art infrastructure and a strong supply chain, we maintain our commitment to innovation and excellence.</p>
+                <br><br>
+                <p><strong>Import & Export Specialization:</strong> In addition to FMCG, we specialize in importing high-quality sunflower and palm oil. While we do not manufacture these oils, we ensure their premium quality and reliable supply.</p>
+                <br>
+                <p><strong>Logistics & Business Terms:</strong> We offer packaging in 1L pouches, 5L cans, and 18L cans. Delivery lead times are 30-35 days for initial orders and 20-25 days for repeats. We follow a 100% advance payment policy and provide shipping options including CIF, CIP, and DAP Incoterms.</p>
+                <br>
+                <p><strong>Vision & Thanks:</strong> As we grow, we aim to expand into a wider range of FMCG products. We thank you for being a part of the Lalithaa Group family. Experience the authentic taste of India—where quality meets tradition.</p>
             </div>
         </section>
 
@@ -782,6 +825,19 @@
         </div>
     </footer>
 
+    <!-- Global Product Specification Modal -->
+    <div id="globalProductModal" class="spec-modal-overlay" onclick="closeProductModal(event)">
+        <div class="spec-modal-content" onclick="event.stopPropagation()">
+            <span class="spec-modal-close" onclick="closeProductModal(event)">&times;</span>
+            <h2 id="modalTitle" style="color: #8B0000; margin-bottom: 10px; font-size: 24px;"></h2>
+            <h4 id="modalHeadline" style="color: #333; margin-bottom: 15px; font-style: italic; font-weight: 600;"></h4>
+            <p id="modalNarrative" style="color: #555; line-height: 1.6; margin-bottom: 15px; text-align: justify; font-size: 15px;"></p>
+            <h4 id="modalBenefitsTitle" style="color: #8B0000; margin-bottom: 10px; font-size: 18px;">Benefits:</h4>
+            <ul id="modalBenefits" style="color: #555; line-height: 1.6; margin-bottom: 20px; padding-left: 20px; font-size: 15px;"></ul>
+            <p id="modalClosing" style="color: #333; line-height: 1.6; text-align: justify; font-weight: 600; font-size: 15px;"></p>
+        </div>
+    </div>
+
     <!-- JavaScript for Dynamic Section Switching -->
     <script>
         function showSection(sectionId, element) {
@@ -807,6 +863,41 @@
             if (element) {
                 element.classList.add('active-link');
             }
+        }
+
+        // JavaScript for Global Product Modal
+        function openProductModal(title, headline, narrative, benefits, closing) {
+            document.getElementById('modalTitle').innerText = title;
+            document.getElementById('modalHeadline').innerText = headline;
+            document.getElementById('modalNarrative').innerText = narrative;
+            
+            const benefitsList = document.getElementById('modalBenefits');
+            benefitsList.innerHTML = '';
+            if (benefits && benefits.length > 0) {
+                document.getElementById('modalBenefitsTitle').style.display = 'block';
+                benefits.forEach(function(benefit) {
+                    const li = document.createElement('li');
+                    li.style.marginBottom = '5px';
+                    li.innerText = benefit;
+                    benefitsList.appendChild(li);
+                });
+            } else {
+                document.getElementById('modalBenefitsTitle').style.display = 'none';
+            }
+
+            const closingEl = document.getElementById('modalClosing');
+            if (closing) {
+                closingEl.innerText = closing;
+                closingEl.style.display = 'block';
+            } else {
+                closingEl.style.display = 'none';
+            }
+            
+            document.getElementById('globalProductModal').style.display = 'flex';
+        }
+
+        function closeProductModal(event) {
+            document.getElementById('globalProductModal').style.display = 'none';
         }
     </script>
 </body>
